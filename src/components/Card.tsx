@@ -10,16 +10,17 @@ interface CardProps {
 };
 
 export const Card: FC<CardProps> = ({ city, country, weather, temperature, humidity }) => {
-    const [minutes, setMinutes] = useState(0);
+    const [minutes, setMinutes] = useState<number>(0);
 
     const refreshPage = () => {
         window.location.reload();
     }
 
     const reloadCheck = () => {
-        setTimeout(() => {
-            setMinutes(minutes + 1);
+        const intervalId = setInterval(() => {
+            setMinutes((prevMinutes: number) => prevMinutes + 1);
         }, 60000);
+        return () => clearInterval(intervalId);
     }
 
     useEffect(() => {
