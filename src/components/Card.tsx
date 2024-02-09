@@ -39,11 +39,11 @@ export const Card: FC<CardProps> = ({ city, country, weather, temperature, humid
             </div>
             <div className='flex items-center justify-between border-b-2 rounded border-gray-300 w-full'>
                 <span>Temperature</span>
-                <span>{ weather }Text</span>
+                <span>{ weather }Text &#176;C</span>
             </div>
             <div className='flex items-center justify-between border-b-2 rounded border-gray-300 w-full'>
                 <span>Humidity</span>
-                <span>{ weather }Text</span>
+                <span>{ weather }Text %</span>
             </div>
             <span className='font-semibold ml-auto text-gray-500'>
                 { minutes === 0 ? 'last update just now' : `last update ${ minutes } minute ago` }
