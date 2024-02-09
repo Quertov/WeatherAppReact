@@ -1,17 +1,15 @@
-export interface IMain {
-    temperature: number,
-    humidity: number
-};
-
-export interface IWeather {
-    weather: string
+interface IWeather {
+    main: string
 };
 
 export interface IWeatherInfo {
-    main: IMain[],
+    main: {
+        temp: number,
+        humidity: number
+    },
     sys: {
         country: string
     }
-    city: string,
+    name: string,
     weather: IWeather[]
 };
