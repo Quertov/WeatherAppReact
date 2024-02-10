@@ -18,7 +18,6 @@ function App() {
       <p className="text-gray-500 font-normal mt-4 text-center">Keep track of the weather in the place you want</p>
       <div className="flex flex-wrap justify-center items-center mt-20">
         <Card city='Khust' />
-        {/* { cityList } */}
         {cityList.map((elem, index) => React.cloneElement(elem, { key: index }))}
       </div>
     <div 
