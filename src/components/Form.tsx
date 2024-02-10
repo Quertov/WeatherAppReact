@@ -1,12 +1,15 @@
-import { FC, useState } from 'react';
+import { FC, ReactElement, useState } from 'react';
+import { Card } from './Card';
 
 interface FormProps {
-    handleForm: React.Dispatch<React.MouseEvent>,
+    handleForm: any//React.Dispatch<React.MouseEvent>,
     cityInInput: string,
-    setCityInInput: React.Dispatch<React.SetStateAction<string>>
+    setCityInInput: React.Dispatch<React.SetStateAction<string>>,
+    cityList: ReactElement[],
+    setCityList: React.Dispatch<React.SetStateAction<ReactElement<any, string>[]>>
 };
 
-export const Form: FC<FormProps> = ({ handleForm, cityInInput, setCityInInput }) => {
+export const Form: FC<FormProps> = ({ handleForm, cityInInput, setCityInInput, cityList, setCityList }) => {
     const [isInputError, setInputError] = useState(false);
 
     const cityInputHandler = (event: any) => {
@@ -19,6 +22,7 @@ export const Form: FC<FormProps> = ({ handleForm, cityInInput, setCityInInput })
           return;
         }
         setInputError(false);
+        setCityList((prevCityList: ReactElement<any, string>[]) => prevCityList.concat(<Card city={ cityInInput } />));
     }
 
     return (
@@ -28,7 +32,7 @@ export const Form: FC<FormProps> = ({ handleForm, cityInInput, setCityInInput })
           <input value={ cityInInput } onChange={ cityInputHandler } type="text" placeholder="Enter city, region or country here..." className="p-2 outline-none border-b-2 border-gray-300 w-full" />
           { isInputError && <span className="text-red-500 ">Please enter the city</span> }
           <div>
-            <button onClick={ () => addCity() } className="text-amber-600 font-semibold ml-auto mr-3">ADD</button>
+            <button onClick={ () => { addCity(); handleForm() } } className="text-amber-600 font-semibold ml-auto mr-3">ADD</button>
             <button onClick={ handleForm } className="text-amber-600 font-semibold ml-auto">CLOSE</button>
           </div>
         </div>

@@ -1,12 +1,12 @@
 import { Card } from "./components/Card"
 import { Form } from "./components/Form";
-import { useState } from "react";
+import { ReactElement, useEffect, useState } from "react";
 
 function App() {
   const [formIsOpen, setFormState] = useState<boolean>(false);
   const [cityInInput, setCityInInput] = useState('');
-  const [cityList, setCityList] = useState([]);
-  
+  const [cityList, setCityList] = useState<ReactElement[]>([]);
+
   const handleForm = () => {
     setFormState((prevFormState: boolean) => !prevFormState);
   }
@@ -17,11 +17,14 @@ function App() {
       <p className="text-gray-500 font-normal mt-4 text-center">Keep track of the weather in the place you want</p>
       <div className="flex flex-wrap justify-center items-center mt-20">
         <Card city='Khust' />
+        { cityList.map((item, index) => (
+          <Card city={ cityInInput } key={ index } />
+        )) }
       </div>
     <div 
       className="bg-amber-600 w-[60px] h-[60px] flex justify-center self-center rounded-full cursor-pointer fixed bottom-4 right-3"
       onClick={ handleForm } ><span className="font-thin text-white text-5xl">+</span></div>
-    { formIsOpen && <Form handleForm={ handleForm } cityInInput={ cityInInput } setCityInInput={ setCityInInput } /> }
+    { formIsOpen && <Form handleForm={ handleForm } cityInInput={ cityInInput } setCityInInput={ setCityInInput } cityList={ cityList } setCityList={ setCityList } /> }
     </>
   )
 }
