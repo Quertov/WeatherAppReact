@@ -14,7 +14,6 @@ export const Card: FC<CardProps> = ({ city }) => {
 
     const [minutes, setMinutes] = useState<number>(0);
     const [isLoading, setLoading] = useState(false);
-    const [isError, setError] = useState(false);
 
     const [country, setCountry] = useState('');
     const [weather, setWeather] = useState('');
@@ -45,10 +44,8 @@ export const Card: FC<CardProps> = ({ city }) => {
             setTemperature(data.main.temp);
             setHumidity(data.main.humidity);
             setLoading(false);
-            setError(false);
         } catch (error) {
             setLoading(false);
-            setError(true);
             console.log(`Error:\n   ${error}`);
         }
     }
