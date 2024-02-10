@@ -2,14 +2,13 @@ import { FC, ReactElement, useState } from 'react';
 import { Card } from './Card';
 
 interface FormProps {
-    handleForm: any//React.Dispatch<React.MouseEvent>,
+    handleForm: any //React.Dispatch<React.MouseEvent>,
     cityInInput: string,
     setCityInInput: React.Dispatch<React.SetStateAction<string>>,
-    cityList: ReactElement[],
-    setCityList: React.Dispatch<React.SetStateAction<ReactElement<any, string>[]>>
+    setCityList: any //React.Dispatch<React.SetStateAction<ReactElement<any, string>[]>>
 };
 
-export const Form: FC<FormProps> = ({ handleForm, cityInInput, setCityInInput, cityList, setCityList }) => {
+export const Form: FC<FormProps> = ({ handleForm, cityInInput, setCityInInput, setCityList }) => {
     const [isInputError, setInputError] = useState(false);
 
     const cityInputHandler = (event: any) => {
@@ -23,6 +22,7 @@ export const Form: FC<FormProps> = ({ handleForm, cityInInput, setCityInInput, c
         }
         setInputError(false);
         setCityList((prevCityList: ReactElement<any, string>[]) => prevCityList.concat(<Card city={ cityInInput } />));
+        setCityInInput('');
     }
 
     return (
