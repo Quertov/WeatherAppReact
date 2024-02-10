@@ -1,6 +1,6 @@
 import { Card } from "./components/Card"
 import { Form } from "./components/Form";
-import { ReactElement, useState } from "react";
+import React, { ReactElement, useState } from "react";
 
 function App() {
   const [formIsOpen, setFormState] = useState<boolean>(false);
@@ -18,7 +18,8 @@ function App() {
       <p className="text-gray-500 font-normal mt-4 text-center">Keep track of the weather in the place you want</p>
       <div className="flex flex-wrap justify-center items-center mt-20">
         <Card city='Khust' />
-        { cityList }
+        {/* { cityList } */}
+        {cityList.map((elem, index) => React.cloneElement(elem, { key: index }))}
       </div>
     <div 
       className="bg-amber-600 w-[60px] h-[60px] flex justify-center self-center rounded-full cursor-pointer fixed bottom-4 right-3"
