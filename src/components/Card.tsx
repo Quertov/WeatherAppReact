@@ -21,10 +21,6 @@ export const Card: FC<CardProps> = ({ city }) => {
     const [temperature, setTemperature] = useState(0);
     const [humidity, setHumidity] = useState(0);
 
-    const refreshPage = () => {
-        window.location.reload();
-    }
-
     const reloadCheck = () => {
         if (minutes === 30) {
             refreshPage();
@@ -39,6 +35,7 @@ export const Card: FC<CardProps> = ({ city }) => {
 
     const fetchWeather = async () => {
         setLoading(true);
+        setMinutes(0);
         try {
             const response = await axios.get<IWeatherInfo>(apiUrl);
             const data = await response.data;
@@ -54,6 +51,10 @@ export const Card: FC<CardProps> = ({ city }) => {
             setError(true);
             console.log(`Error:\n   ${error}`);
         }
+    }
+
+    const refreshPage = () => {
+        fetchWeather();
     }
 
     useEffect(() => {
@@ -83,13 +84,13 @@ export const Card: FC<CardProps> = ({ city }) => {
                         <span>Humidity</span>
                         <span>{ humidity }%</span>
                     </div>
-                    <button className='text-amber-600 font-semibold ml-auto' onClick={refreshPage}>RELOAD</button>
+                    <span className='font-semibold ml-auto text-gray-500'>
+                        { minutes === 0 ? 'last update just now' : `last update ${ minutes } minute ago` }
+                    </span>
+                    <button className='text-amber-600 font-semibold ml-auto' onClick={ refreshPage }>RELOAD</button>
                 </article>
                 
             </> }
-            <span className='font-normal text-2xl ml-auto text-gray-500 fixed bottom-4 left-3'>
-                    { minutes === 0 ? 'last update just now' : `last update ${ minutes } minute ago` }
-            </span>
         </>
     )
 }
