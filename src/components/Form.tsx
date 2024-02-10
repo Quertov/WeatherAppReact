@@ -29,7 +29,7 @@ export const Form: FC<FormProps> = ({ handleForm, cityInInput, setCityInInput, s
         <div id="modalBg" className="absolute top-0 bottom-0 right-0 left-0 flex justify-center items-center">
         <div className="w-[400px] h-[200px] p-5 bg-white rounded flex justify-between flex-col">
           <span className="text-3xl">Add place</span>
-          <input value={ cityInInput } onChange={ cityInputHandler } type="text" placeholder="Enter city, region or country here..." className="p-2 outline-none border-b-2 border-gray-300 w-full" />
+          <input autoFocus value={ cityInInput } onChange={ cityInputHandler } type="text" placeholder="Enter city, region or country here..." className="p-2 outline-none border-b-2 border-gray-300 w-full" />
           { isInputError && <span className="text-red-500 ">Please enter the city</span> }
           <div>
             <button onClick={ () => { addCity(); handleForm() } } className="text-amber-600 font-semibold ml-auto mr-3">ADD</button>
