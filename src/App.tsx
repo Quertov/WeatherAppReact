@@ -9,6 +9,7 @@ function App() {
 
   const handleForm = () => {
     setFormState((prevFormState: boolean) => !prevFormState);
+    setCityInInput('');
   }
 
   return (
