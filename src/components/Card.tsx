@@ -57,7 +57,7 @@ export const Card: FC<CardProps> = ({ city }) => {
         <>
             <article className='w-[600px] h-[300px] border-2 shadow-2xl mr-10 mb-10 flex justify-between flex-col p-3'>
                 <div>
-                    <h1 className='font-semibold text-3xl'>{ city }</h1>
+                    <h1 className='font-semibold text-3xl'>{ city.charAt(0).toUpperCase() + city.slice(1).toLowerCase() }</h1>
                     <span>{ country }</span>
                 </div>
                 <div className='flex items-center justify-between border-b-2 rounded border-gray-300 w-full'>
@@ -74,7 +74,7 @@ export const Card: FC<CardProps> = ({ city }) => {
                 </div>
                 <button className='text-amber-600 font-semibold ml-auto' onClick={refreshPage}>RELOAD</button>
             </article>
-            <span className='font-semibold text-2xl ml-auto text-gray-500 fixed bottom-4 left-3'>
+            <span className='font-normal text-2xl ml-auto text-gray-500 fixed bottom-4 left-3'>
                 { minutes === 0 ? 'last update just now' : `last update ${ minutes } minute ago` }
             </span>
         </>

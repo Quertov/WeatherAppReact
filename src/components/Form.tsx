@@ -2,10 +2,10 @@ import { FC, ReactElement, useState } from 'react';
 import { Card } from './Card';
 
 interface FormProps {
-    handleForm: any //React.Dispatch<React.MouseEvent>,
+    handleForm: any
     cityInInput: string,
     setCityInInput: React.Dispatch<React.SetStateAction<string>>,
-    setCityList: any //React.Dispatch<React.SetStateAction<ReactElement<any, string>[]>>
+    setCityList: any
 };
 
 export const Form: FC<FormProps> = ({ handleForm, cityInInput, setCityInInput, setCityList }) => {
